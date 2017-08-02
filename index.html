@@ -1,17 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <title>littleReminder</title>
     <link rel="stylesheet" href="layout/layout.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-
-    <form action="remind.php" method="post">
-        <input type="text" id="reminderContent" name="reminderContent">
-        <input type="submit" id="reminderButton" value="remind">
-    </form>
-
+    <main>
+        <div id="littleReminderForm">
+            <form action="remind.php" method="post">
+                <div id="titleImg"><img src="img/littleReminderTitle.png"></div>
+                <input type="email" class="reminderRecipient" id="reminderRecipient" placeholder="little@reminder.de" class="invalidEmail" name="reminderRecipient">
+                <input class="reminderContent" type="text" id="reminderContent" autocomplete="off" name="reminderContent">
+                <input type="submit" id="reminderButton" value="GO!">
+            </form>
+        </div>
+    </main>
 </body>
 <script src="script/script.js"> </script>
 </html>

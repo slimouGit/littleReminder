@@ -1,7 +1,82 @@
-body{margin: 0px;padding: 0px;background-color: #05e000};
+body{margin: 0px;padding: 10px 0px;background-color: #05e000;font-family:sans-serif;};
+
+main{
+    text-align:center;
+    background-color: #000ff5;
+}
+#littleReminderForm{
+    text-align: center;
+    width: 90%;
+    height: 90%;
+    margin: 0px auto;
+}
+
 input{
+    width: 100%;
     display: block;
+    margin-bottom: 10px;
+}
+.reminderRecipient{
+    height: 70px;
+    font-size:1.5em;
+}
+.reminderContent{
+    height: 200px;
+    font-size:3em;
+    font-weight: bold;
+    color:#444;
+}
+.invalidEmail{
+    color: #ff0000;
+}
+.validEmail{
+    color: #05e000;
+}
+img{
+    width: 100%;
+}
+img.success{
+    text-align: center;
+    width: 50%;
 }
 #reminderButton{
+    width: 100%;
     display: none;
+    background-color: #05e000;
+    border-radius: 10px;
+    border: 1px solid white;
+    font-size:2em;
+    font-weight: bold;
+    color:#fff;
+}
+
+input[type=text], input[type=email] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=submit] {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 0px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #ff0000;
+}
+
+@media only screen and (max-width: 400px) {
+    img.success{
+        width: 90%;
+    }
 }
