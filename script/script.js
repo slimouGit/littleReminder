@@ -10,7 +10,7 @@ var storageAsString;
 var storageAsObject;
 
 //Pattern fuer Email-Validierung
-var emailPattern = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+var emailPattern = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/;
 
 //----------------------------------------------------------------------------------------------------------
 
