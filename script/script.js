@@ -10,21 +10,34 @@ var storageAsString;
 var storageAsObject;
 
 //Pattern fuer Email-Validierung
-/*
-/das Pattern deckt noch nicht alle Moeglichkeiten eine Email-Adresse ab, z.B. xxx.xxx@xxx.de
-*/
 var emailPattern = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
 
-function init() {
+//----------------------------------------------------------------------------------------------------------
 
+function init() {
+    
+    //Anzeige der Option, den Speicher zu loeschen, wenn Daten enthalten
+    if(!((localStorage.getItem('email'))==null)){
+        document.getElementById("deleteStorage").style.display = "block";
+    }
+    
     addItem();
 
     var reminderRecipient = document.getElementById("reminderRecipient");
     var reminderContent = document.getElementById("reminderContent");
     var reminderButton = document.getElementById("reminderButton");
+    
+    document.getElementById("deleteStorage").addEventListener("click", deleteStorage);
+    document.getElementById("reminderButton").addEventListener("click", addItem);
 
-    setInterval(function () {
-        
+    setInterval(function () { manageInterface(); },200);
+    
+};
+
+//----------------------------------------------------------------------------------------------------------
+
+//Funktion validiert die eingegebene Email und prueft, ob das Feld fuer die Nachricht einen Text enthaelt
+function manageInterface(){
         //Email ueberpruefen
         if(reminderRecipient.value.match(emailPattern)){
             reminderRecipient.classList.remove("invalidEmail");
@@ -36,6 +49,7 @@ function init() {
             error = true;
         }
         
+        //Inputfield ueberpruefen
         if(!(reminderContent.value)=="" && error === false){
             document.body.style.backgroundColor = "#05e000";
             reminderButton.style.display = "block";
@@ -43,41 +57,33 @@ function init() {
             document.body.style.backgroundColor = "#ff0000";
             reminderButton.style.display = "none";
             error = true;
-        }
-    },200);
+        }   
 };
 
-//document.getElementById("reminderRecipient").addEventListener("click", createOption);
-document.getElementById("reminderButton").addEventListener("click", addItem);
+//----------------------------------------------------------------------------------------------------------
 
+//Funktion befuellt local storage
 function addItem(){
-
+    
     storageItem = localStorage.getItem('email');
-
+    
     if(storageItem) storageItem = JSON.parse(storageItem);
     else storageItem = [];
+    
+    //doppelte Elemente loeschen
+    storageItem = removeDuplicates(storageItem);
 
     storageItem.push(document.getElementById('reminderRecipient').value);
-    var lastIndex = storageItem.length;
-    //alert(lastIndex);
-    //alert(storageItem[0]);
-
     localStorage.setItem('email',JSON.stringify(storageItem));
-
     storageAsString = localStorage.getItem('email');
     storageAsObject = JSON.parse(storageAsString);
-
-    var doubleItem = storageAsObject.includes("smartillmer@gmail.com");
-
     createOption();
-
 };
 
+//----------------------------------------------------------------------------------------------------------
 
+//Funktion erstellt die Items in der datalist
 function createOption(){
-
-    storageAsObject = removeDuplicates(storageAsObject);
-
     //datalist erweitern
     var list = document.getElementById('emails');
     storageAsObject.forEach(function (item) {
@@ -89,6 +95,9 @@ function createOption(){
     });
 };
 
+//----------------------------------------------------------------------------------------------------------
+
+//Funktion entfernt doppelte Eintraege in einem Array
 function removeDuplicates(num) {
     var x,
         len=num.length,
@@ -102,4 +111,14 @@ function removeDuplicates(num) {
         out.push(x);
     }
     return out;
-}
+};
+
+//----------------------------------------------------------------------------------------------------------
+
+//Funktion loescht den local storage
+function deleteStorage(){
+    localStorage.clear();
+    location.reload();
+};
+
+//----------------------------------------------------------------------------------------------------------
