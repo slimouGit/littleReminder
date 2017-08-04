@@ -11,7 +11,9 @@
         <div id="littleReminderForm">
             <form action="script/remind.php" method="post">
                 <div id="titleImg"><img src="img/littleReminderTitle.png"></div>
-                <input type="email" class="reminderRecipient" id="reminderRecipient" placeholder="little@reminder.de" class="invalidEmail" name="reminderRecipient">
+                <input type="email" class="reminderRecipient" list="emails" id="reminderRecipient" autocomplete="off" placeholder="little@reminder.de" class="invalidEmail" name="reminderRecipient">
+                <datalist id="emails">
+                </datalist>
                 <input class="reminderContent" type="text" id="reminderContent" autocomplete="off" name="reminderContent">
                 <input type="submit" id="reminderButton" value="GO!">
             </form>
