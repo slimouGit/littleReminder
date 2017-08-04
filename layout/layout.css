@@ -49,6 +49,20 @@ img.success{
     font-weight: bold;
     color:#fff;
 }
+footer{
+    text-align:center;
+    position: fixed;
+    bottom:0px;
+    width: 100%;
+}
+footer>p{
+    color: white;
+    font-size:0.75em;
+}
+#deleteStorage{
+    display:none;
+}
+
 
 input[type=text], input[type=email] {
     width: 100%;
