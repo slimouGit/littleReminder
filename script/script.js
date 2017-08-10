@@ -29,7 +29,8 @@ function init() {
     
     document.getElementById("deleteStorage").addEventListener("click", deleteStorage);
     document.getElementById("reminderButton").addEventListener("click", addItem);
-
+    
+    //bessere Loesung ist mit "change" oder "keyup"
     setInterval(function () { manageInterface(); },200);
     
 };
