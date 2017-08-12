@@ -30,14 +30,18 @@ function init() {
     document.getElementById("deleteStorage").addEventListener("click", deleteStorage);
     document.getElementById("reminderButton").addEventListener("click", addItem);
 
-    setInterval(function () { manageInterface(); },200);
-    
+    reminderRecipient.addEventListener("change", manageInterface);
+    reminderRecipient.addEventListener("keyup", manageInterface);
+    reminderContent.addEventListener("change", manageInterface);
+    reminderContent.addEventListener("keyup", manageInterface);
+
 };
 
 //----------------------------------------------------------------------------------------------------------
 
 //Funktion validiert die eingegebene Email und prueft, ob das Feld fuer die Nachricht einen Text enthaelt
 function manageInterface(){
+
         //Email ueberpruefen
         if(reminderRecipient.value.match(emailPattern)){
             reminderRecipient.classList.remove("invalidEmail");
